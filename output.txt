@@ -1,1 +1,3 @@
-0
+Option 1: insert in the tail
+1
+20
