@@ -40,6 +40,14 @@ void insert_at_postion(Node *Head, int pos, int v){
     Node * tmp= Head;
     for(int i=1; i<pos-1;i++){
         tmp= tmp->next;
+        if(tmp==NULL){
+            cout<<endl<<"Insert Invalid indexes"<<endl;
+            return;
+        }
+    }
+    if(tmp->next==NULL){
+        cout<<endl<<"Insert Invalid Indexe"<<endl;
+        return;
     }
     newNode->next=tmp->next;
     tmp->next=newNode;
@@ -55,6 +63,10 @@ void delete_from_position(Node * Head,int  pos){
     Node * tmp= new Node(pos);
     for(int i=1; i<=pos-1;i++){
         tmp=tmp->next;
+        if(tmp==NULL){
+            cout<<endl<<"Invalid index"<<endl;
+            return;
+        }
     }
     Node * deleteNode=tmp->next;
     tmp->next=tmp->next->next;
@@ -63,6 +75,10 @@ void delete_from_position(Node * Head,int  pos){
 
 }
 void delete_head(Node *Head){
+    if(Head==NULL){
+        cout<<endl<<"delete not head"<<endl;
+        return;
+    }
     Node * deleteNode= Head;
     Head=Head->next;
     delete deleteNode;
@@ -76,7 +92,8 @@ int main(){
     cout<<"option 3: insert any postion"<<endl;
     cout<<"option 4: insert at head"<<endl;
     cout<<"option 5: delete with position"<<endl;
-    cout<<"Option 6: Terminate"<<endl;
+    cout<<"option 6: delete Head"<<endl;
+    cout<<"Option 7: Terminate"<<endl;
     while(true){
         int op;
     cin>>op;
@@ -109,10 +126,20 @@ int main(){
         cout<<"Enter your position"<<endl;
         int pos;
         cin>>pos;
-        delete_from_position(Head, pos);
+        if(pos==0){
+            delete_head(Head);
+        }
+        else{
+            delete_from_position(Head, pos);
+
+        }
+        
+    }
+    else if(op==6){
+        delete_head(Head);
     }
 
-    else if(op==6){
+    else if(op==7){
         break;
     }
 
